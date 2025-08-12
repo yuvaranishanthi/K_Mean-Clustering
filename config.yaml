@@ -1,0 +1,13 @@
+name: music-cluster-app
+channels:
+  - defaults
+dependencies:
+  - python=3.10
+  - pip
+  - flask=2.3.2
+  - pandas=2.2.2
+  - numpy=1.26.4
+  - scikit-learn=1.4.2
+  - joblib=1.4.2
+  - pip:
+      - gunicorn==21.2.0

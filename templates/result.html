@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Music Cluster Result</title>
+    <script src="https://cdn.jsdelivr.net/npm/particles.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: black;
+            color: white;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+        #particles-js {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .card {
+            background: rgba(255,255,255,0.1);
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 100px auto;
+            box-shadow: 0 0 30px rgba(255,255,255,0.2);
+            animation: pop 0.6s ease;
+        }
+        @keyframes pop {
+            0% { transform: scale(0.5); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+        ul {
+            list-style-type: "🎵 ";
+            padding-left: 0;
+            text-align: left;
+            max-width: 400px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="particles-js"></div>
+
+    <h1>🎵 Your Song Cluster</h1>
+    <div class="card">
+        {% set parts = prediction.split("Examples:") %}
+        {% set cluster_info = parts[0].strip() %}
+        {% set examples = parts[1].strip().split(",") %}
+
+        <h2>{{ cluster_info }}</h2>
+        <h3>Example Songs:</h3>
+        <ul>
+            {% for song in examples %}
+                <li>{{ song.strip() }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <script>
+        particlesJS("particles-js", {
+            particles: {
+                number: { value: 40 },
+                shape: {
+                    type: "image",
+                    image: {
+                        src: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Musical_note.svg/1200px-Musical_note.svg.png",
+                        width: 30,
+                        height: 30
+                    }
+                },
+                opacity: { value: 0.8 },
+                size: { value: 15, random: true },
+                move: { enable: true, speed: 2, direction: "top", out_mode: "out" }
+            }
+        });
+    </script>
+</body>
+</html>
+
